@@ -47,6 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extension Methods\QueryableExtensions.cs" />
     <Compile Include="Extension Methods\StringExtensions.cs" />
+    <Compile Include="SymmetricEncryption\AesEncryption.cs" />
+    <Compile Include="SymmetricEncryption\ISymmetricEncryption.cs" />
+    <Compile Include="SymmetricEncryption\SymmetricEncryption.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
