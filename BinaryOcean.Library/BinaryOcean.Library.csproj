@@ -7,8 +7,8 @@
     <ProjectGuid>{B3D2DBE7-0F1B-4E84-8A13-9E7D91A75D96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BinaryOcean.Extras</RootNamespace>
-    <AssemblyName>BinaryOcean.Extras</AssemblyName>
+    <RootNamespace>BinaryOcean.Library</RootNamespace>
+    <AssemblyName>BinaryOcean.Library</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
