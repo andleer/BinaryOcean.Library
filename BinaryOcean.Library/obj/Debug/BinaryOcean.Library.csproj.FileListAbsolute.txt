@@ -1,5 +1,0 @@
-C:\Dev\BinaryOcean.Library\BinaryOcean.Library\bin\Debug\BinaryOcean.Library.dll
-C:\Dev\BinaryOcean.Library\BinaryOcean.Library\bin\Debug\BinaryOcean.Library.pdb
-C:\Dev\BinaryOcean.Library\BinaryOcean.Library\obj\Debug\BinaryOcean.Library.csprojResolveAssemblyReference.cache
-C:\Dev\BinaryOcean.Library\BinaryOcean.Library\obj\Debug\BinaryOcean.Library.dll
-C:\Dev\BinaryOcean.Library\BinaryOcean.Library\obj\Debug\BinaryOcean.Library.pdb
