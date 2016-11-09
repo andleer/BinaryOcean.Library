@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +46,13 @@
     <Compile Include="Extension Methods\DateTimeExtensions.cs" />
     <Compile Include="Extension Methods\EnumerableExtensions.cs" />
     <Compile Include="Extension Methods\PredicateExtensions.cs" />
+    <Compile Include="Imaging\HorizontalAlignment.cs" />
+    <Compile Include="Imaging\ImageExtensions.cs" />
+    <Compile Include="Imaging\ImageKit.cs" />
+    <Compile Include="Imaging\ImageUtility.cs" />
+    <Compile Include="Imaging\Offset.cs" />
+    <Compile Include="Imaging\TextUtility.cs" />
+    <Compile Include="Imaging\VerticalAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extension Methods\QueryableExtensions.cs" />
     <Compile Include="Extension Methods\StringExtensions.cs" />
