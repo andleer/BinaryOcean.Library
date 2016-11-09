@@ -24,7 +24,7 @@ namespace BinaryOcean.Library
             var hashAlgorithm = GetHashAlgorithm(SymmetricAlgorithm.KeySize);
             var hash = hashAlgorithm.ComputeHash(new ASCIIEncoding().GetBytes(password));
 
-            SymmetricAlgorithm.Key = SubArray(hash, 0, SymmetricAlgorithm.KeySize / 8);
+            SymmetricAlgorithm.Key = hash.SubArray(0, SymmetricAlgorithm.KeySize / 8);
         }
 
         protected HashAlgorithm GetHashAlgorithm(int sizeInBits)
@@ -60,7 +60,7 @@ namespace BinaryOcean.Library
                 cryptoStream.Write(data, 0, data.Length);
                 cryptoStream.FlushFinalBlock();
 
-                return Convert.ToBase64String(Concat(SymmetricAlgorithm.IV, memoryStream.ToArray()));
+                return Convert.ToBase64String(SymmetricAlgorithm.IV.Concat(memoryStream.ToArray()));
             }
         }
 
@@ -74,9 +74,9 @@ namespace BinaryOcean.Library
             try
             {
                 var data = Convert.FromBase64String(encryptedText);
-                SymmetricAlgorithm.IV = SubArray(data, 0, SymmetricAlgorithm.IV.Length);
+                SymmetricAlgorithm.IV = data.SubArray(0, SymmetricAlgorithm.IV.Length);
 
-                var cipher = SubArray(data, SymmetricAlgorithm.IV.Length, data.Length - SymmetricAlgorithm.IV.Length);
+                var cipher = data.SubArray(SymmetricAlgorithm.IV.Length, data.Length - SymmetricAlgorithm.IV.Length);
                 byte[] result = new byte[cipher.Length];
 
                 using (var encryptor = SymmetricAlgorithm.CreateDecryptor())
@@ -84,7 +84,7 @@ namespace BinaryOcean.Library
                 using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Read))
                 {
                     var length = cryptoStream.Read(result, 0, result.Length);
-                    return SubArray(result, 0, length);
+                    return result.SubArray(0, length);
                 }
             }
             catch (Exception ex)
@@ -93,23 +93,25 @@ namespace BinaryOcean.Library
             }
         }
 
-        private T[] SubArray<T>(T[] byteArray, int start, int length)
-        {
-            T[] result = new T[length];
+        //see BinaryOcean.Library Array extension methods
+        //
+        //private T[] SubArray<T>(T[] byteArray, int start, int length)
+        //{
+        //    T[] result = new T[length];
 
-            Array.Copy(byteArray, start, result, 0, length);
+        //    Array.Copy(byteArray, start, result, 0, length);
 
-            return result;
-        }
+        //    return result;
+        //}
+        //
+        //private T[] Concat<T>(T[] array1, T[] array2)
+        //{
+        //    var result = new T[array1.Length + array2.Length];
 
-        private T[] Concat<T>(T[] array1, T[] array2)
-        {
-            var result = new T[array1.Length + array2.Length];
+        //    Array.Copy(array1, 0, result, 0, array1.Length);
+        //    Array.Copy(array2, 0, result, array1.Length, array2.Length);
 
-            Array.Copy(array1, 0, result, 0, array1.Length);
-            Array.Copy(array2, 0, result, array1.Length, array2.Length);
-
-            return result;
-        }
+        //    return result;
+        //}
     }
 }
