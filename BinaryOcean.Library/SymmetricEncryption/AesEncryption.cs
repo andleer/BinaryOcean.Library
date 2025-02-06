@@ -12,7 +12,7 @@ namespace BinaryOcean.Library
 
         protected override SymmetricAlgorithm GetSymmetricAlgorithm()
         {
-            return new AesManaged();
+            return Aes.Create();
         }
     }
 }

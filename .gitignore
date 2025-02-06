@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/BinaryOcean.Library/bin/Debug/net9.0
+/BinaryOcean.Library/obj
+/UnitTests/bin/Debug/net9.0
+/UnitTests/obj

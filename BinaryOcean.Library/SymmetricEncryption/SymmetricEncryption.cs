@@ -1,12 +1,12 @@
-using System;
-using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace BinaryOcean.Library
 {
-    public abstract class SymmetricEncryption : ISymmetricEncryption
+    public abstract class SymmetricEncryption : ISymmetricEncryption, IDisposable
     {
+        private bool _disposed = false;
+
         public SymmetricEncryption(string password)
         {
             SymmetricAlgorithm = GetSymmetricAlgorithm();
@@ -30,16 +30,16 @@ namespace BinaryOcean.Library
         protected HashAlgorithm GetHashAlgorithm(int sizeInBits)
         {
             if (sizeInBits <= 160)
-                return new SHA1Managed();
+                return SHA1.Create();
 
             if (sizeInBits <= 256)
-                return new SHA256Managed();
+                return SHA256.Create();
 
             if (sizeInBits <= 384)
-                return new SHA384Managed();
+                return SHA384.Create();
 
             if (sizeInBits <= 512)
-                return new SHA512Managed();
+                return SHA512.Create();
 
             throw new InvalidOperationException("Unable to find a SHA Hashing Algorithm that will return the required number of bits.");
         }
@@ -91,6 +91,25 @@ namespace BinaryOcean.Library
             {
                 throw new InvalidOperationException("Symmetric Decryption Failure.", ex);
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    SymmetricAlgorithm.Dispose();
+                }
+
+                _disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
 
         //see BinaryOcean.Library Array extension methods
